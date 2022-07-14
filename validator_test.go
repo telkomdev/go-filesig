@@ -6,7 +6,7 @@ import (
 )
 
 func TestPdf(t *testing.T) {
-	buff := bytes.NewBuffer([]byte("%PDF-1.3"))
+	buff := bytes.NewReader([]byte("%PDF-1.3"))
 
 	valid := IsPdf(buff)
 	if !valid {
@@ -15,7 +15,7 @@ func TestPdf(t *testing.T) {
 }
 
 func TestMpg0(t *testing.T) {
-	buff := bytes.NewBuffer(MPG_0)
+	buff := bytes.NewReader(MPG_0)
 
 	valid := IsMpg(buff)
 	if !valid {
@@ -24,7 +24,7 @@ func TestMpg0(t *testing.T) {
 }
 
 func TestMpg1(t *testing.T) {
-	buff := bytes.NewBuffer(MPG_1)
+	buff := bytes.NewReader(MPG_1)
 
 	valid := IsMpg(buff)
 	if !valid {
