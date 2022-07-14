@@ -1,0 +1,6 @@
+.vscode/
+cmd/
+*.jpg
+*.jpeg
+*.png
+*.PNG
