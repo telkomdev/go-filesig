@@ -5,6 +5,26 @@ import (
 	"io"
 )
 
+type function func(io.Reader) bool
+
+// IsOneOf function will validate File with multiple function
+func IsOneOf(r io.Reader, functions ...function) bool {
+	for _, f := range functions {
+		bufRead := &bytes.Buffer{}
+		tee := io.TeeReader(r, bufRead)
+
+		valid := f(tee)
+
+		if valid {
+			return true
+		}
+
+		r = bufRead
+	}
+
+	return false
+}
+
 func readUntil(l int, r io.Reader) ([]byte, error) {
 	buff := make([]byte, l)
 
@@ -16,6 +36,7 @@ func readUntil(l int, r io.Reader) ([]byte, error) {
 	return buff, nil
 }
 
+// IsPng function will return true if File is a valid PNG
 func IsPng(r io.Reader) bool {
 	l := len(PNG)
 
@@ -32,6 +53,7 @@ func IsPng(r io.Reader) bool {
 	return true
 }
 
+// IsJpeg function will return true if File is a valid JPEG
 func IsJpeg(r io.Reader) bool {
 	l := len(JPEG)
 
@@ -48,6 +70,7 @@ func IsJpeg(r io.Reader) bool {
 	return true
 }
 
+// IsPdf function will return true if File is a valid PDF
 func IsPdf(r io.Reader) bool {
 	l := len(PDF)
 
@@ -64,6 +87,7 @@ func IsPdf(r io.Reader) bool {
 	return true
 }
 
+// IsGif function will return true if File is a valid GIF
 func IsGif(r io.Reader) bool {
 	l := len(GIF)
 
@@ -80,6 +104,7 @@ func IsGif(r io.Reader) bool {
 	return true
 }
 
+// IsAvif function will return true if File is a valid AVIF
 func IsAvif(r io.Reader) bool {
 	l := len(AVIF)
 
@@ -96,6 +121,7 @@ func IsAvif(r io.Reader) bool {
 	return true
 }
 
+// IsBmp function will return true if File is a valid BMP
 func IsBmp(r io.Reader) bool {
 	l := len(BMP)
 
@@ -112,6 +138,7 @@ func IsBmp(r io.Reader) bool {
 	return true
 }
 
+// IsDib function will return true if File is a valid DIB
 func IsDib(r io.Reader) bool {
 	l := len(DIB)
 
@@ -128,6 +155,7 @@ func IsDib(r io.Reader) bool {
 	return true
 }
 
+// IsTiff function will return true if File is a valid TIFF
 func IsTiff(r io.Reader) bool {
 	l := len(TIFF)
 
@@ -144,6 +172,7 @@ func IsTiff(r io.Reader) bool {
 	return true
 }
 
+// IsMp3 function will return true if File is a valid MP3
 func IsMp3(r io.Reader) bool {
 	l := len(MP3)
 
@@ -160,6 +189,7 @@ func IsMp3(r io.Reader) bool {
 	return true
 }
 
+// IsMpg function will return true if File is a valid MPG
 func IsMpg(r io.Reader) bool {
 	l1 := len(MPG_0)
 
@@ -177,6 +207,7 @@ func IsMpg(r io.Reader) bool {
 	return true
 }
 
+// IsFlv function will return true if File is a valid FLV
 func IsFlv(r io.Reader) bool {
 	l := len(FLV)
 
@@ -193,6 +224,7 @@ func IsFlv(r io.Reader) bool {
 	return true
 }
 
+// IsApk function will return true if File is a valid APK
 func IsApk(r io.Reader) bool {
 	l := len(APK)
 
@@ -209,6 +241,7 @@ func IsApk(r io.Reader) bool {
 	return true
 }
 
+// IsMsOffice function will return true if File is a valid MS OFFICE Document (DOCX|PPTX|XLSX)
 func IsMsOffice(r io.Reader) bool {
 	l := len(MS_OFFICE)
 
@@ -225,6 +258,7 @@ func IsMsOffice(r io.Reader) bool {
 	return true
 }
 
+// IsJar function will return true if File is a valid JAR (Java Archive)
 func IsJar(r io.Reader) bool {
 	l := len(JAR)
 
@@ -241,6 +275,7 @@ func IsJar(r io.Reader) bool {
 	return true
 }
 
+// IsSwf function will return true if File is a valid SWF
 func IsSwf(r io.Reader) bool {
 	l := len(SWF)
 
@@ -257,6 +292,7 @@ func IsSwf(r io.Reader) bool {
 	return true
 }
 
+// Is3gp function will return true if File is a valid 3gp
 func Is3gp(r io.Reader) bool {
 	l1 := len(THREE_GP_0)
 
@@ -275,6 +311,7 @@ func Is3gp(r io.Reader) bool {
 	return true
 }
 
+// IsMkv function will return true if File is a valid MKV
 func IsMkv(r io.Reader) bool {
 	l := len(MKV)
 
@@ -291,6 +328,7 @@ func IsMkv(r io.Reader) bool {
 	return true
 }
 
+// IsRar function will return true if File is a valid RAR
 func IsRar(r io.Reader) bool {
 	l := len(RAR)
 
@@ -307,6 +345,7 @@ func IsRar(r io.Reader) bool {
 	return true
 }
 
+// IsGzip function will return true if File is a valid GZIP
 func IsGzip(r io.Reader) bool {
 	l := len(GZIP)
 
@@ -323,6 +362,7 @@ func IsGzip(r io.Reader) bool {
 	return true
 }
 
+// IsZip function will return true if File is a valid ZIP
 func IsZip(r io.Reader) bool {
 	l := len(ZIP)
 
@@ -339,6 +379,7 @@ func IsZip(r io.Reader) bool {
 	return true
 }
 
+// IsWebp function will return true if File is a valid Webp
 func IsWebp(r io.Reader) bool {
 	l := len(WEBP)
 
