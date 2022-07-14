@@ -360,15 +360,17 @@ func IsGzip(r io.ReadSeeker) bool {
 
 // IsZip function will return true if File is a valid ZIP
 func IsZip(r io.ReadSeeker) bool {
-	l := len(ZIP)
+	l := len(ZIP_0)
 
 	buff, err := readUntil(l, r)
 	if err != nil {
 		return false
 	}
 
-	valid := bytes.Compare(ZIP, buff)
-	if valid != 0 {
+	valid_zip_0 := bytes.Compare(ZIP_0, buff)
+	valid_zip_1 := bytes.Compare(ZIP_0, buff)
+	valid_zip_2 := bytes.Compare(ZIP_2, buff)
+	if valid_zip_0 != 0 && valid_zip_1 != 0 && valid_zip_2 != 0 {
 		return false
 	}
 
