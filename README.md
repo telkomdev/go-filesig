@@ -43,6 +43,41 @@ func main() {
 	fmt.Println(valid)
 ```
 
+One Of
+```go
+package main
+
+import (
+	"fmt"
+	"github.com/telkomdev/go-filesig"
+	"os"
+)
+
+func main() {
+	args := os.Args
+
+	if len(args) < 2 {
+		fmt.Println("required input file")
+		os.Exit(1)
+	}
+
+	inputFileArg := args[1]
+	inFile, err := os.Open(inputFileArg)
+
+	if err != nil {
+		fmt.Println("error open input file ", err)
+		os.Exit(1)
+	}
+
+	defer func() { inFile.Close() }()
+
+	valid := filesig.IsOneOf(inFile, filesig.Is3gp, filesig.IsPng, filesig.IsJpeg)
+	fmt.Println(valid)
+
+}
+
+```
+
 HTTP Form File
 ```go
 package main
