@@ -1,4 +1,4 @@
-name: gaw CI
+name: filesig Go CI
 
 on:
   push:
