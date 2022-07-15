@@ -2,6 +2,8 @@
 
 small library to validate Files by reading each magic number from a file
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/telkomdev/go-filesig.svg)](https://pkg.go.dev/github.com/telkomdev/go-filesig)
+
 #### Install
 
 ```shell
