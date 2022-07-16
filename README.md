@@ -3,6 +3,7 @@
 small library to validate Files by reading each magic number from a file
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/telkomdev/go-filesig.svg)](https://pkg.go.dev/github.com/telkomdev/go-filesig)
+[![filesig Go CI](https://github.com/telkomdev/go-filesig/actions/workflows/ci.yml/badge.svg)](https://github.com/telkomdev/go-filesig/actions/workflows/ci.yml)
 
 #### Install
 
