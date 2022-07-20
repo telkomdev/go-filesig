@@ -35,10 +35,19 @@ func readUntil(l int, r io.ReadSeeker) ([]byte, error) {
 	return buff, nil
 }
 
-func genericCompareBuffer(r io.ReadSeeker, t []byte) bool {
+func checkBuffer(r io.ReadSeeker, t []byte) ([]byte, error) {
 	l := len(t)
 
 	buff, err := readUntil(l, r)
+	if err != nil {
+		return make([]byte, 0), err
+	}
+
+	return buff, nil
+}
+
+func genericCompareBuffer(r io.ReadSeeker, t []byte) bool {
+	buff, err := checkBuffer(r, t)
 	if err != nil {
 		return false
 	}
