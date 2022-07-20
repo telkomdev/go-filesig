@@ -181,3 +181,11 @@ func TestIsApk(t *testing.T) {
 		t.Error("error: buffer not valid APK file")
 	}
 }
+
+func TestGenericCompareBuffer(t *testing.T) {
+	buff := bytes.NewReader([]byte{})
+	valid := IsJpeg(buff)
+	if valid {
+		t.Error("error: buffer is empty")
+	}
+}
