@@ -22,9 +22,12 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: ${{ matrix.go-version }}
-      
+
       - name: Install Ubuntu dependecies
         run: bash ./scripts/install_ubuntu_deps
 
       - name: Run test
-        run: make test
+        run: make test-cover
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
