@@ -6,6 +6,10 @@ test:
 	$(foreach pkg, $(ALL_PACKAGES),\
 	go test -race -v $(pkg);)
 
+test-cover:
+	$(foreach pkg, $(ALL_PACKAGES),\
+	go test -race -covermode=atomic -coverprofile=coverage.out $(pkg);)
+
 format:
 	find . -name "*.go" -not -path "./vendor/*" -not -path ".git/*" | xargs gofmt -s -d -w
 
