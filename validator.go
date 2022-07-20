@@ -146,9 +146,7 @@ func IsSwf(r io.ReadSeeker) bool {
 
 // Is3gp function will return true if File is a valid 3gp
 func Is3gp(r io.ReadSeeker) bool {
-	l1 := len(THREE_GP_0)
-
-	buff, err := readUntil(l1, r)
+	buff, err := checkBuffer(r, THREE_GP_0)
 	if err != nil {
 		return false
 	}
@@ -180,9 +178,7 @@ func IsGzip(r io.ReadSeeker) bool {
 
 // IsZip function will return true if File is a valid ZIP
 func IsZip(r io.ReadSeeker) bool {
-	l := len(ZIP_0)
-
-	buff, err := readUntil(l, r)
+	buff, err := checkBuffer(r, ZIP_0)
 	if err != nil {
 		return false
 	}
