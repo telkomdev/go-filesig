@@ -11,6 +11,10 @@ func TestIsOneOf(t *testing.T) {
 	if !valid {
 		t.Error("error: buffer not valid PDF file")
 	}
+	valid = IsOneOf(buff, IsPng, IsJpeg, IsApk)
+	if valid {
+		t.Error("error: buffer not valid PDF file")
+	}
 }
 
 func TestPdf(t *testing.T) {
