@@ -27,7 +27,10 @@ func readUntil(l int, r io.ReadSeeker) ([]byte, error) {
 		return nil, err
 	}
 
-	r.Seek(0, io.SeekStart)
+	_, err = r.Seek(0, io.SeekStart)
+	if err != nil {
+		return nil, err
+	}
 
 	return buff, nil
 }
