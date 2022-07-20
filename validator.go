@@ -56,6 +56,21 @@ func genericCompareBuffer(r io.ReadSeeker, t []byte) bool {
 	return valid == 0
 }
 
+func genericMultipleCompareBuffer(r io.ReadSeeker, t [][]byte) bool {
+	buff, err := checkBuffer(r, t[0])
+	if err != nil {
+		return false
+	}
+
+	for _, v := range t {
+		if bytes.Compare(v, buff) == 0 {
+			return true
+		}
+	}
+
+	return false
+}
+
 // IsPng function will return true if File is a valid PNG
 func IsPng(r io.ReadSeeker) bool {
 	return genericCompareBuffer(r, PNG)
@@ -103,20 +118,10 @@ func IsMp3(r io.ReadSeeker) bool {
 
 // IsMpg function will return true if File is a valid MPG
 func IsMpg(r io.ReadSeeker) bool {
-	l1 := len(MPG_0)
-
-	buff, err := readUntil(l1, r)
-	if err != nil {
-		return false
-	}
-
-	valid_mpg_0 := bytes.Compare(MPG_0, buff)
-	valid_mpg_1 := bytes.Compare(MPG_1, buff)
-	if valid_mpg_0 != 0 && valid_mpg_1 != 0 {
-		return false
-	}
-
-	return true
+	return genericMultipleCompareBuffer(r, [][]byte{
+		MPG_0,
+		MPG_1,
+	})
 }
 
 // IsFlv function will return true if File is a valid FLV
@@ -146,19 +151,11 @@ func IsSwf(r io.ReadSeeker) bool {
 
 // Is3gp function will return true if File is a valid 3gp
 func Is3gp(r io.ReadSeeker) bool {
-	buff, err := checkBuffer(r, THREE_GP_0)
-	if err != nil {
-		return false
-	}
-
-	valid_3gp_0 := bytes.Compare(THREE_GP_0, buff)
-	valid_3gp_1 := bytes.Compare(THREE_GP_1, buff)
-	valid_3gp_2 := bytes.Compare(THREE_GP_2, buff)
-	if valid_3gp_0 != 0 && valid_3gp_1 != 0 && valid_3gp_2 != 0 {
-		return false
-	}
-
-	return true
+	return genericMultipleCompareBuffer(r, [][]byte{
+		THREE_GP_0,
+		THREE_GP_1,
+		THREE_GP_2,
+	})
 }
 
 // IsMkv function will return true if File is a valid MKV
@@ -178,19 +175,11 @@ func IsGzip(r io.ReadSeeker) bool {
 
 // IsZip function will return true if File is a valid ZIP
 func IsZip(r io.ReadSeeker) bool {
-	buff, err := checkBuffer(r, ZIP_0)
-	if err != nil {
-		return false
-	}
-
-	valid_zip_0 := bytes.Compare(ZIP_0, buff)
-	valid_zip_1 := bytes.Compare(ZIP_0, buff)
-	valid_zip_2 := bytes.Compare(ZIP_2, buff)
-	if valid_zip_0 != 0 && valid_zip_1 != 0 && valid_zip_2 != 0 {
-		return false
-	}
-
-	return true
+	return genericMultipleCompareBuffer(r, [][]byte{
+		ZIP_0,
+		ZIP_1,
+		ZIP_2,
+	})
 }
 
 // IsWebp function will return true if File is a valid Webp
