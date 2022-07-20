@@ -188,35 +188,23 @@ func IsWebp(r io.ReadSeeker) bool {
 }
 
 func IsMp4(r io.ReadSeeker) bool {
-	l := len(MP4_0)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
+	buff, err := checkBuffer(r, MP4_0)
 	if len(buff) < 9 {
 		return false
 	}
 
-	valid_mp4_0 := bytes.Compare(MP4_0[4:8], buff[4:8])
-
-	if valid_mp4_0 == 0 {
+	validMpFour0 := bytes.Compare(MP4_0[4:8], buff[4:8])
+	if validMpFour0 == 0 {
 		return true
 	}
 
-	l = len(MP4_1)
-
-	buff, err = readUntil(l, r)
+	buff, err = checkBuffer(r, MP4_1)
 	if err != nil {
 		return false
 	}
 
-	valid_mp4_1 := bytes.Compare(MP4_1[4:8], buff[4:8])
-	valid_mp4_2 := bytes.Compare(MP4_2[4:8], buff[4:8])
-	if valid_mp4_1 != 0 && valid_mp4_2 != 0 {
-		return false
-	}
+	validMpFour1 := bytes.Compare(MP4_1[4:8], buff[4:8])
+	validMpFour2 := bytes.Compare(MP4_2[4:8], buff[4:8])
 
-	return true
+	return validMpFour1 == 0 && validMpFour2 == 0
 }
