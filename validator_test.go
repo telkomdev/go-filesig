@@ -2,15 +2,26 @@ package filesig
 
 import (
 	"bytes"
+	"os"
 	"testing"
 )
 
 func TestIsOneOf(t *testing.T) {
-	buff := bytes.NewReader([]byte("%PDF-1.3"))
+	buff, err := os.Open("./tmp/sample-0.pdf")
+
+	if err != nil {
+		t.Error("error: PDF file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
 	valid := IsOneOf(buff, IsPng, IsJpeg, IsPdf, IsApk)
 	if !valid {
 		t.Error("error: buffer not valid PDF file")
 	}
+
 	valid = IsOneOf(buff, IsPng, IsJpeg, IsApk)
 	if valid {
 		t.Error("error: buffer not valid PDF file")
@@ -18,7 +29,16 @@ func TestIsOneOf(t *testing.T) {
 }
 
 func TestPdf(t *testing.T) {
-	buff := bytes.NewReader([]byte("%PDF-1.3"))
+	buff, err := os.Open("./tmp/sample-0.pdf")
+
+	if err != nil {
+		t.Error("error: PDF file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
 	valid := IsPdf(buff)
 	if !valid {
 		t.Error("error: buffer not valid PDF file")
@@ -39,7 +59,16 @@ func TestMpg(t *testing.T) {
 }
 
 func TestIsGif(t *testing.T) {
-	buff := bytes.NewReader(GIF)
+	buff, err := os.Open("./tmp/sample-0.gif")
+
+	if err != nil {
+		t.Error("error: GIF file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
 	valid := IsGif(buff)
 	if !valid {
 		t.Error("error: buffer not valid GIF file")
@@ -47,7 +76,16 @@ func TestIsGif(t *testing.T) {
 }
 
 func TestIsBmp(t *testing.T) {
-	buff := bytes.NewReader(BMP)
+	buff, err := os.Open("./tmp/sample-0.bmp")
+
+	if err != nil {
+		t.Error("error: BMP file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
 	valid := IsBmp(buff)
 	if !valid {
 		t.Error("error: buffer not valid BMP file")
@@ -55,7 +93,16 @@ func TestIsBmp(t *testing.T) {
 }
 
 func TestIsDib(t *testing.T) {
-	buff := bytes.NewReader(DIB)
+	buff, err := os.Open("./tmp/sample-0.dib")
+
+	if err != nil {
+		t.Error("error: DIB file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
 	valid := IsDib(buff)
 	if !valid {
 		t.Error("error: buffer not valid DIB file")
@@ -63,7 +110,16 @@ func TestIsDib(t *testing.T) {
 }
 
 func TestIsTiff(t *testing.T) {
-	buff := bytes.NewReader(TIFF)
+	buff, err := os.Open("./tmp/sample-0.tiff")
+
+	if err != nil {
+		t.Error("error: TIFF file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
 	valid := IsTiff(buff)
 	if !valid {
 		t.Error("error: buffer not valid TIFF file")
@@ -71,7 +127,16 @@ func TestIsTiff(t *testing.T) {
 }
 
 func TestIsGzip(t *testing.T) {
-	buff := bytes.NewReader(GZIP)
+	buff, err := os.Open("./tmp/sample-0.tgz")
+
+	if err != nil {
+		t.Error("error: GZIP file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
 	valid := IsGzip(buff)
 	if !valid {
 		t.Error("error: buffer not valid GZIP file")
@@ -79,7 +144,16 @@ func TestIsGzip(t *testing.T) {
 }
 
 func TestIsRar(t *testing.T) {
-	buff := bytes.NewReader(RAR)
+	buff, err := os.Open("./tmp/sample-0.rar")
+
+	if err != nil {
+		t.Error("error: RAR file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
 	valid := IsRar(buff)
 	if !valid {
 		t.Error("error: buffer not valid RAR file")
@@ -87,7 +161,16 @@ func TestIsRar(t *testing.T) {
 }
 
 func TestIsMkv(t *testing.T) {
-	buff := bytes.NewReader(MKV)
+	buff, err := os.Open("./tmp/sample-0.mkv")
+
+	if err != nil {
+		t.Error("error: MKV file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
 	valid := IsMkv(buff)
 	if !valid {
 		t.Error("error: buffer not valid MKV file")
@@ -95,7 +178,16 @@ func TestIsMkv(t *testing.T) {
 }
 
 func TestIsJar(t *testing.T) {
-	buff := bytes.NewReader(JAR)
+	buff, err := os.Open("./tmp/sample-0.jar")
+
+	if err != nil {
+		t.Error("error: JAR file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
 	valid := IsJar(buff)
 	if !valid {
 		t.Error("error: buffer not valid JAR file")
@@ -103,7 +195,16 @@ func TestIsJar(t *testing.T) {
 }
 
 func TestIsSwf(t *testing.T) {
-	buff := bytes.NewReader(SWF)
+	buff, err := os.Open("./tmp/sample-0.swf")
+
+	if err != nil {
+		t.Error("error: SWF file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
 	valid := IsSwf(buff)
 	if !valid {
 		t.Error("error: buffer not valid SWF file")
@@ -111,7 +212,16 @@ func TestIsSwf(t *testing.T) {
 }
 
 func TestIsFlv(t *testing.T) {
-	buff := bytes.NewReader(FLV)
+	buff, err := os.Open("./tmp/sample-0.flv")
+
+	if err != nil {
+		t.Error("error: FLV file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
 	valid := IsFlv(buff)
 	if !valid {
 		t.Error("error: buffer not valid FLV file")
@@ -119,7 +229,16 @@ func TestIsFlv(t *testing.T) {
 }
 
 func TestIsMp3(t *testing.T) {
-	buff := bytes.NewReader(MP3)
+	buff, err := os.Open("./tmp/sample-0.mp3")
+
+	if err != nil {
+		t.Error("error: MP3 file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
 	valid := IsMp3(buff)
 	if !valid {
 		t.Error("error: buffer not valid MP3 file")
@@ -127,7 +246,16 @@ func TestIsMp3(t *testing.T) {
 }
 
 func TestIsAvif(t *testing.T) {
-	buff := bytes.NewReader(AVIF)
+	buff, err := os.Open("./tmp/sample-0.avif")
+
+	if err != nil {
+		t.Error("error: AVIF file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
 	valid := IsAvif(buff)
 	if !valid {
 		t.Error("error: buffer not valid AVIF file")
@@ -135,7 +263,16 @@ func TestIsAvif(t *testing.T) {
 }
 
 func TestIsMsOffice(t *testing.T) {
-	buff := bytes.NewReader(MS_OFFICE)
+	buff, err := os.Open("./tmp/sample-0.docx")
+
+	if err != nil {
+		t.Error("error: MS Office file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
 	valid := IsMsOffice(buff)
 	if !valid {
 		t.Error("error: buffer not valid MS Office file")
@@ -143,7 +280,16 @@ func TestIsMsOffice(t *testing.T) {
 }
 
 func TestIsWebp(t *testing.T) {
-	buff := bytes.NewReader(WEBP)
+	buff, err := os.Open("./tmp/sample-0.webp")
+
+	if err != nil {
+		t.Error("error: WEBP file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
 	valid := IsWebp(buff)
 	if !valid {
 		t.Error("error: buffer not valid WEBP file")
@@ -151,7 +297,16 @@ func TestIsWebp(t *testing.T) {
 }
 
 func TestIs3gp(t *testing.T) {
-	buff := bytes.NewReader(THREE_GP_0)
+	buff, err := os.Open("./tmp/sample-0.3gp")
+
+	if err != nil {
+		t.Error("error: 3GP file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
 	valid := Is3gp(buff)
 	if !valid {
 		t.Error("error: buffer not valid 3GP file")
@@ -159,7 +314,16 @@ func TestIs3gp(t *testing.T) {
 }
 
 func TestIsZip(t *testing.T) {
-	buff := bytes.NewReader(ZIP_0)
+	buff, err := os.Open("./tmp/sample-0.zip")
+
+	if err != nil {
+		t.Error("error: ZIP file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
 	valid := IsZip(buff)
 	if !valid {
 		t.Error("error: buffer not valid ZIP file")
@@ -172,8 +336,18 @@ func TestIsMp4(t *testing.T) {
 	if valid {
 		t.Error("error: invalid MP4 buffer length")
 	}
-	buff = bytes.NewReader(MP4_0)
-	valid = IsMp4(buff)
+
+	realBuff, err := os.Open("./tmp/sample-0.mp4")
+
+	if err != nil {
+		t.Error("error: APK file not found")
+	}
+
+	defer func() {
+		realBuff.Close()
+	}()
+
+	valid = IsMp4(realBuff)
 	if !valid {
 		t.Error("error: buffer not valid MP4 file")
 	}
@@ -185,7 +359,16 @@ func TestIsMp4(t *testing.T) {
 }
 
 func TestIsApk(t *testing.T) {
-	buff := bytes.NewReader(APK)
+	buff, err := os.Open("./tmp/sample-0.apk")
+
+	if err != nil {
+		t.Error("error: APK file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
 	valid := IsApk(buff)
 	if !valid {
 		t.Error("error: buffer not valid APK file")
