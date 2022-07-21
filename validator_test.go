@@ -194,3 +194,11 @@ func TestGenericCompareBuffer(t *testing.T) {
 		t.Error("error: buffer is empty")
 	}
 }
+
+func TestGenericMultipleCompareBuffer(t *testing.T) {
+	buff := bytes.NewReader([]byte{})
+	valid := IsZip(buff)
+	if valid {
+		t.Error("error: buffer is empty")
+	}
+}
