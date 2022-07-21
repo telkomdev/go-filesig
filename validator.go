@@ -100,7 +100,10 @@ func IsBmp(r io.ReadSeeker) bool {
 
 // IsDib function will return true if File is a valid DIB
 func IsDib(r io.ReadSeeker) bool {
-	return genericCompareBuffer(r, DIB)
+	return genericMultipleCompareBuffer(r, [][]byte{
+		DIB_0,
+		DIB_1,
+	})
 }
 
 // IsTiff function will return true if File is a valid TIFF
@@ -143,7 +146,10 @@ func IsJar(r io.ReadSeeker) bool {
 
 // IsSwf function will return true if File is a valid SWF
 func IsSwf(r io.ReadSeeker) bool {
-	return genericCompareBuffer(r, SWF)
+	return genericMultipleCompareBuffer(r, [][]byte{
+		SWF_0,
+		SWF_1,
+	})
 }
 
 // Is3gp function will return true if File is a valid 3gp
