@@ -4,7 +4,7 @@ small library to validate Files by reading each magic number from a file
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/telkomdev/go-filesig.svg)](https://pkg.go.dev/github.com/telkomdev/go-filesig)
 [![filesig Go CI](https://github.com/telkomdev/go-filesig/actions/workflows/ci.yml/badge.svg)](https://github.com/telkomdev/go-filesig/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/lutfailham96/go-filesig/branch/main/graph/badge.svg?token=9HD3Y6LG9Q)](https://codecov.io/gh/lutfailham96/go-filesig)
+[![codecov](https://codecov.io/gh/lutfailham96/go-filesig/branch/master/graph/badge.svg?token=9HD3Y6LG9Q)](https://codecov.io/gh/lutfailham96/go-filesig)
 [![Maintainability](https://api.codeclimate.com/v1/badges/d7e6b70ae51aefd5b412/maintainability)](https://codeclimate.com/github/lutfailham96/go-filesig/maintainability)
 [![Known Vulnerabilities](https://snyk.io/test/github/lutfailham96/go-filesig/badge.svg)](https://snyk.io/test/github/lutfailham96/go-filesig)
 
