@@ -189,7 +189,7 @@ func TestIsApk(t *testing.T) {
 
 func TestGenericCompareBuffer(t *testing.T) {
 	buff := bytes.NewReader([]byte{})
-	valid := IsJpeg(buff)
+	valid := genericCompareBuffer(buff, PDF)
 	if valid {
 		t.Error("error: buffer is empty")
 	}
@@ -197,8 +197,13 @@ func TestGenericCompareBuffer(t *testing.T) {
 
 func TestGenericMultipleCompareBuffer(t *testing.T) {
 	buff := bytes.NewReader([]byte{})
-	valid := IsZip(buff)
+	valid := genericMultipleCompareBuffer(buff, [][]byte{ZIP_0, ZIP_1, ZIP_2})
 	if valid {
 		t.Error("error: buffer is empty")
+	}
+	buff = bytes.NewReader(ZIP_0)
+	valid = genericMultipleCompareBuffer(buff, [][]byte{{0x00}, ZIP_1, ZIP_2})
+	if valid {
+		t.Error("error: buffer is invalid")
 	}
 }
