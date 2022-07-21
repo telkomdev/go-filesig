@@ -172,6 +172,11 @@ func TestIsMp4(t *testing.T) {
 	if !valid {
 		t.Error("error: buffer not valid MP4 file")
 	}
+	buff = bytes.NewReader([]byte{0x00, 0x00, 0x00, 0x00, 0x00, 0x00})
+	valid = IsMp4(buff)
+	if valid {
+		t.Error("error: invalid MP4 buffer length")
+	}
 }
 
 func TestIsApk(t *testing.T) {
