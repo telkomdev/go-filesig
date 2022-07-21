@@ -28,6 +28,50 @@ jobs:
       - name: Install Ubuntu dependecies
         run: bash ./scripts/install_ubuntu_deps
 
+      - name: Get sample files
+        run: |-
+          mkdir tmp \
+            && curl -sLko tmp/sample-0.mp3 https://file-examples.com/storage/fefbfe84f862d721699d168/2017/11/file_example_MP3_700KB.mp3 \
+            && curl -sLko tmp/sample-0.wav https://file-examples.com/storage/fefbfe84f862d721699d168/2017/11/file_example_WAV_1MG.wav \
+            && curl -sLko tmp/sample-0.ogg https://file-examples.com/storage/fefbfe84f862d721699d168/2017/11/file_example_OOG_1MG.ogg \
+            && curl -sLko tmp/sample-0.doc https://file-examples.com/storage/fefbfe84f862d721699d168/2017/02/file-sample_100kB.doc \
+            && curl -sLko tmp/sample-0.docx https://file-examples.com/storage/fefbfe84f862d721699d168/2017/02/file-sample_100kB.docx \
+            && curl -sLko tmp/sample-0.xls https://file-examples.com/storage/fefbfe84f862d721699d168/2017/02/file_example_XLS_10.xls \
+            && curl -sLko tmp/sample-0.xlsx https://file-examples.com/storage/fefbfe84f862d721699d168/2017/02/file_example_XLSX_10.xlsx \
+            && curl -sLko tmp/sample-0.ppt https://file-examples.com/storage/fefbfe84f862d721699d168/2017/08/file_example_PPT_250kB.ppt \
+            && curl -sLko tmp/sample-0.odt https://file-examples.com/storage/fefbfe84f862d721699d168/2017/10/file-sample_100kB.odt \
+            && curl -sLko tmp/sample-0.pdf https://file-examples.com/storage/fefbfe84f862d721699d168/2017/10/file-sample_150kB.pdf \
+            && curl -sLko tmp/sample-0.rtf https://file-examples.com/storage/fefbfe84f862d721699d168/2019/09/file-sample_100kB.rtf \
+            && curl -sLko tmp/sample-0.mpg https://filesamples.com/samples/video/mpg/sample_640x360.mpg \
+            && curl -sLko tmp/sample-0.flv https://filesamples.com/samples/video/flv/sample_640x360.flv \
+            && curl -sLko tmp/sample-0.3gp https://filesamples.com/samples/video/3gp/sample_640x360.3gp \
+            && curl -sLko tmp/sample-0.mkv https://filesamples.com/samples/video/mkv/sample_640x360.mkv \
+            && curl -sLko tmp/sample-0.swf https://filesamples.com/samples/video/swf/sample_640x360.swf \
+            && curl -sLko tmp/sample-0.mp4 https://file-examples.com/storage/fefbfe84f862d721699d168/2017/04/file_example_MP4_480_1_5MG.mp4 \
+            && curl -sLko tmp/sample-0.webm https://file-examples.com/storage/fefbfe84f862d721699d168/2020/03/file_example_WEBM_480_900KB.webm \
+            && curl -sLko tmp/sample-0.wmv https://file-examples.com/storage/fefbfe84f862d721699d168/2018/04/file_example_WMV_480_1_2MB.wmv \
+            && curl -sLko tmp/sample-0.avi https://file-examples.com/storage/fefbfe84f862d721699d168/2018/04/file_example_AVI_480_750kB.avi \
+            && curl -sLko tmp/sample-0.mov https://file-examples.com/storage/fefbfe84f862d721699d168/2018/04/file_example_MOV_480_700kB.mov \
+            && curl -sLko tmp/sample-0.bmp https://filesamples.com/samples/image/bmp/sample_640%C3%97426.bmp \
+            && curl -sLko tmp/sample-0.avif http://sample-file.bazadanni.com/download/images/avif/sample.avif \
+            && curl -sLko tmp/sample-0.webp https://file-examples.com/storage/fefbfe84f862d721699d168/2020/03/file_example_WEBP_50kB.webp \
+            && curl -sLko tmp/sample-0.png https://file-examples.com/storage/fefbfe84f862d721699d168/2017/10/file_example_PNG_500kB.png \
+            && curl -sLko tmp/sample-0.jpg https://file-examples.com/storage/fefbfe84f862d721699d168/2017/10/file_example_JPG_100kB.jpg \
+            && curl -sLko tmp/sample-0.tiff https://file-examples.com/storage/fefbfe84f862d721699d168/2017/10/file_example_TIFF_1MB.tiff \
+            && curl -sLko tmp/sample-0.gif https://file-examples.com/storage/fefbfe84f862d721699d168/2017/10/file_example_GIF_500kB.gif \
+            && curl -sLko tmp/sample-0.svg https://file-examples.com/storage/fefbfe84f862d721699d168/2020/03/file_example_SVG_20kB.svg \
+            && curl -sLko tmp/sample-0.ico https://file-examples.com/storage/fefbfe84f862d721699d168/2017/10/file_example_favicon.ico \
+            && curl -sLko tmp/sample-0.dib https://raw.githubusercontent.com/filestar/File-Type-Sample-Repository/master/dib/sample.dib \
+            && curl -sLko tmp/sample-0.apk https://raw.githubusercontent.com/appium-boneyard/sample-code/master/sample-code/apps/ContactManager/ContactManager.apk \
+            && curl -sLko tmp/sample-0.zip https://file-examples.com/storage/fefbfe84f862d721699d168/2017/02/zip_2MB.zip \
+            && curl -sLko tmp/sample-0.rar https://getsamplefiles.com/download/rar/sample.rar \
+            && curl -sLko tmp/sample-0.tgz https://getsamplefiles.com/download/gzip/sample.tgz \
+            && curl -sLko tmp/sample-0.tar https://getsamplefiles.com/download/tar/sample.tar \
+            && curl -sLko tmp/sample-0.jar.zip http://www.java2s.com/Code/JarDownload/sample/sample.jar.zip \
+            && unzip tmp/sample-0.jar.zip -d tmp \
+            && mv tmp/sample.jar tmp/sample-0.jar \
+            && rm tmp/sample-0.jar.zip
+
       - name: Run test
         run: make test-cover
 
