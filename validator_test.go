@@ -167,15 +167,20 @@ func TestIsZip(t *testing.T) {
 }
 
 func TestIsMp4(t *testing.T) {
-	buff := bytes.NewReader(MP4_0)
+	buff := bytes.NewReader(make([]byte, 0))
 	valid := IsMp4(buff)
+	if valid {
+		t.Error("error: invalid MP4 buffer length")
+	}
+	buff = bytes.NewReader(MP4_0)
+	valid = IsMp4(buff)
 	if !valid {
 		t.Error("error: buffer not valid MP4 file")
 	}
 	buff = bytes.NewReader([]byte{0x00, 0x00, 0x00, 0x00, 0x00, 0x00})
 	valid = IsMp4(buff)
 	if valid {
-		t.Error("error: invalid MP4 buffer length")
+		t.Error("error: buffer not valid MP4 file")
 	}
 }
 
@@ -204,6 +209,6 @@ func TestGenericMultipleCompareBuffer(t *testing.T) {
 	buff = bytes.NewReader(ZIP_0)
 	valid = genericMultipleCompareBuffer(buff, [][]byte{{0x00}, ZIP_1, ZIP_2})
 	if valid {
-		t.Error("error: buffer is invalid")
+		t.Error("error: one of buffer type is invalid")
 	}
 }
