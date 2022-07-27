@@ -32,398 +32,182 @@ func readUntil(l int, r io.ReadSeeker) ([]byte, error) {
 	return buff, nil
 }
 
-// IsPng function will return true if File is a valid PNG
-func IsPng(r io.ReadSeeker) bool {
-	l := len(PNG)
+func checkBuffer(r io.ReadSeeker, t []byte) ([]byte, error) {
+	l := len(t)
 
 	buff, err := readUntil(l, r)
+	if err != nil {
+		return make([]byte, 0), err
+	}
+
+	return buff, nil
+}
+
+func genericCompareBuffer(r io.ReadSeeker, t []byte) bool {
+	buff, err := checkBuffer(r, t)
 	if err != nil {
 		return false
 	}
 
-	valid := bytes.Compare(PNG, buff)
-	if valid != 0 {
+	valid := bytes.Compare(t, buff)
+	return valid == 0
+}
+
+func genericMultipleCompareBuffer(r io.ReadSeeker, t [][]byte) bool {
+	buff, err := checkBuffer(r, t[0])
+	if err != nil {
 		return false
 	}
 
-	return true
+	for _, v := range t {
+		if bytes.Compare(v, buff) == 0 {
+			return true
+		}
+	}
+
+	return false
+}
+
+// IsPng function will return true if File is a valid PNG
+func IsPng(r io.ReadSeeker) bool {
+	return genericCompareBuffer(r, PNG)
 }
 
 // IsJpeg function will return true if File is a valid JPEG
 func IsJpeg(r io.ReadSeeker) bool {
-	l := len(JPEG)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
-	valid := bytes.Compare(JPEG, buff)
-	if valid != 0 {
-		return false
-	}
-
-	return true
+	return genericCompareBuffer(r, JPEG)
 }
 
 // IsPdf function will return true if File is a valid PDF
 func IsPdf(r io.ReadSeeker) bool {
-	l := len(PDF)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
-	valid := bytes.Compare(PDF, buff)
-	if valid != 0 {
-		return false
-	}
-
-	return true
+	return genericCompareBuffer(r, PDF)
 }
 
 // IsGif function will return true if File is a valid GIF
 func IsGif(r io.ReadSeeker) bool {
-	l := len(GIF)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
-	valid := bytes.Compare(GIF, buff)
-	if valid != 0 {
-		return false
-	}
-
-	return true
+	return genericCompareBuffer(r, GIF)
 }
 
 // IsAvif function will return true if File is a valid AVIF
 func IsAvif(r io.ReadSeeker) bool {
-	l := len(AVIF)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
-	valid := bytes.Compare(AVIF, buff)
-	if valid != 0 {
-		return false
-	}
-
-	return true
+	return genericCompareBuffer(r, AVIF)
 }
 
 // IsBmp function will return true if File is a valid BMP
 func IsBmp(r io.ReadSeeker) bool {
-	l := len(BMP)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
-	valid := bytes.Compare(BMP, buff)
-	if valid != 0 {
-		return false
-	}
-
-	return true
+	return genericCompareBuffer(r, BMP)
 }
 
 // IsDib function will return true if File is a valid DIB
 func IsDib(r io.ReadSeeker) bool {
-	l := len(DIB)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
-	valid := bytes.Compare(DIB, buff)
-	if valid != 0 {
-		return false
-	}
-
-	return true
+	return genericMultipleCompareBuffer(r, [][]byte{
+		DIB_0,
+		DIB_1,
+	})
 }
 
 // IsTiff function will return true if File is a valid TIFF
 func IsTiff(r io.ReadSeeker) bool {
-	l := len(TIFF)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
-	valid := bytes.Compare(TIFF, buff)
-	if valid != 0 {
-		return false
-	}
-
-	return true
+	return genericCompareBuffer(r, TIFF)
 }
 
 // IsMp3 function will return true if File is a valid MP3
 func IsMp3(r io.ReadSeeker) bool {
-	l := len(MP3)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
-	valid := bytes.Compare(MP3, buff)
-	if valid != 0 {
-		return false
-	}
-
-	return true
+	return genericCompareBuffer(r, MP3)
 }
 
 // IsMpg function will return true if File is a valid MPG
 func IsMpg(r io.ReadSeeker) bool {
-	l1 := len(MPG_0)
-
-	buff, err := readUntil(l1, r)
-	if err != nil {
-		return false
-	}
-
-	valid_mpg_0 := bytes.Compare(MPG_0, buff)
-	valid_mpg_1 := bytes.Compare(MPG_1, buff)
-	if valid_mpg_0 != 0 && valid_mpg_1 != 0 {
-		return false
-	}
-
-	return true
+	return genericMultipleCompareBuffer(r, [][]byte{
+		MPG_0,
+		MPG_1,
+	})
 }
 
 // IsFlv function will return true if File is a valid FLV
 func IsFlv(r io.ReadSeeker) bool {
-	l := len(FLV)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
-	valid := bytes.Compare(FLV, buff)
-	if valid != 0 {
-		return false
-	}
-
-	return true
+	return genericCompareBuffer(r, FLV)
 }
 
 // IsApk function will return true if File is a valid APK
 func IsApk(r io.ReadSeeker) bool {
-	l := len(APK)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
-	valid := bytes.Compare(APK, buff)
-	if valid != 0 {
-		return false
-	}
-
-	return true
+	return genericCompareBuffer(r, APK)
 }
 
 // IsMsOffice function will return true if File is a valid MS OFFICE Document (DOCX|PPTX|XLSX)
 func IsMsOffice(r io.ReadSeeker) bool {
-	l := len(MS_OFFICE)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
-	valid := bytes.Compare(MS_OFFICE, buff)
-	if valid != 0 {
-		return false
-	}
-
-	return true
+	return genericCompareBuffer(r, MS_OFFICE)
 }
 
 // IsJar function will return true if File is a valid JAR (Java Archive)
 func IsJar(r io.ReadSeeker) bool {
-	l := len(JAR)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
-	valid := bytes.Compare(JAR, buff)
-	if valid != 0 {
-		return false
-	}
-
-	return true
+	return genericCompareBuffer(r, JAR)
 }
 
 // IsSwf function will return true if File is a valid SWF
 func IsSwf(r io.ReadSeeker) bool {
-	l := len(SWF)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
-	valid := bytes.Compare(SWF, buff)
-	if valid != 0 {
-		return false
-	}
-
-	return true
+	return genericMultipleCompareBuffer(r, [][]byte{
+		SWF_0,
+		SWF_1,
+	})
 }
 
 // Is3gp function will return true if File is a valid 3gp
 func Is3gp(r io.ReadSeeker) bool {
-	l1 := len(THREE_GP_0)
-
-	buff, err := readUntil(l1, r)
-	if err != nil {
-		return false
-	}
-
-	valid_3gp_0 := bytes.Compare(THREE_GP_0, buff)
-	valid_3gp_1 := bytes.Compare(THREE_GP_1, buff)
-	valid_3gp_2 := bytes.Compare(THREE_GP_2, buff)
-	if valid_3gp_0 != 0 && valid_3gp_1 != 0 && valid_3gp_2 != 0 {
-		return false
-	}
-
-	return true
+	return genericMultipleCompareBuffer(r, [][]byte{
+		THREE_GP_0,
+		THREE_GP_1,
+		THREE_GP_2,
+	})
 }
 
 // IsMkv function will return true if File is a valid MKV
 func IsMkv(r io.ReadSeeker) bool {
-	l := len(MKV)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
-	valid := bytes.Compare(MKV, buff)
-	if valid != 0 {
-		return false
-	}
-
-	return true
+	return genericCompareBuffer(r, MKV)
 }
 
 // IsRar function will return true if File is a valid RAR
 func IsRar(r io.ReadSeeker) bool {
-	l := len(RAR)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
-	valid := bytes.Compare(RAR, buff)
-	if valid != 0 {
-		return false
-	}
-
-	return true
+	return genericCompareBuffer(r, RAR)
 }
 
 // IsGzip function will return true if File is a valid GZIP
 func IsGzip(r io.ReadSeeker) bool {
-	l := len(GZIP)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
-	valid := bytes.Compare(GZIP, buff)
-	if valid != 0 {
-		return false
-	}
-
-	return true
+	return genericCompareBuffer(r, GZIP)
 }
 
 // IsZip function will return true if File is a valid ZIP
 func IsZip(r io.ReadSeeker) bool {
-	l := len(ZIP_0)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
-	valid_zip_0 := bytes.Compare(ZIP_0, buff)
-	valid_zip_1 := bytes.Compare(ZIP_0, buff)
-	valid_zip_2 := bytes.Compare(ZIP_2, buff)
-	if valid_zip_0 != 0 && valid_zip_1 != 0 && valid_zip_2 != 0 {
-		return false
-	}
-
-	return true
+	return genericMultipleCompareBuffer(r, [][]byte{
+		ZIP_0,
+		ZIP_1,
+		ZIP_2,
+	})
 }
 
 // IsWebp function will return true if File is a valid Webp
 func IsWebp(r io.ReadSeeker) bool {
-	l := len(WEBP)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
-	valid := bytes.Compare(WEBP, buff)
-	if valid != 0 {
-		return false
-	}
-
-	return true
+	return genericCompareBuffer(r, WEBP)
 }
 
 func IsMp4(r io.ReadSeeker) bool {
-	l := len(MP4_0)
-
-	buff, err := readUntil(l, r)
-	if err != nil {
-		return false
-	}
-
+	buff, err := checkBuffer(r, MP4_0)
 	if len(buff) < 9 {
 		return false
 	}
 
-	valid_mp4_0 := bytes.Compare(MP4_0[4:8], buff[4:8])
-
-	if valid_mp4_0 == 0 {
+	validMpFour0 := bytes.Compare(MP4_0[4:8], buff[4:8])
+	if validMpFour0 == 0 {
 		return true
 	}
 
-	l = len(MP4_1)
-
-	buff, err = readUntil(l, r)
+	buff, err = checkBuffer(r, MP4_1)
 	if err != nil {
 		return false
 	}
 
-	valid_mp4_1 := bytes.Compare(MP4_1[4:8], buff[4:8])
-	valid_mp4_2 := bytes.Compare(MP4_2[4:8], buff[4:8])
-	if valid_mp4_1 != 0 && valid_mp4_2 != 0 {
-		return false
-	}
+	validMpFour1 := bytes.Compare(MP4_1[4:8], buff[4:8])
+	validMpFour2 := bytes.Compare(MP4_2[4:8], buff[4:8])
 
-	return true
+	return validMpFour1 == 0 && validMpFour2 == 0
 }
