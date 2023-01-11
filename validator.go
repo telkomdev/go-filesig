@@ -211,3 +211,14 @@ func IsMp4(r io.ReadSeeker) bool {
 
 	return validMpFour1 == 0 && validMpFour2 == 0
 }
+
+// IsSvg function will return true if File is a valid SVG
+func IsSvg(r io.ReadSeeker) bool {
+	buff, err := io.ReadAll(r)
+	if err != nil {
+		return false
+	}
+	r.Seek(0, io.SeekStart)
+
+	return SvgRegex.Match(HtmlCommentRegex.ReplaceAll(buff, []byte{}))
+}

@@ -1,5 +1,7 @@
 package filesig
 
+import "regexp"
+
 var (
 	AVIF       = []byte{0x00, 0x00, 0x00}
 	BMP        = []byte{0x42, 0x4D}
@@ -32,4 +34,7 @@ var (
 	ZIP_1      = []byte{0x50, 0x4B, 0x05, 0x06}
 	ZIP_2      = []byte{0x50, 0x4B, 0x07, 0x08}
 	WEBP       = []byte{0x52, 0x49, 0x46, 0x46}
+
+	HtmlCommentRegex = regexp.MustCompile(`(?i)<!--([\s\S]*?)-->`)
+	SvgRegex         = regexp.MustCompile(`(?i)^\s*(?:<\?xml[^>]*>\s*)?(?:<!doctype svg[^>]*>\s*)?<svg[^>]*>[^*]*<\/svg>\s*$`)
 )
