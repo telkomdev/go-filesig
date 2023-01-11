@@ -395,3 +395,20 @@ func TestGenericMultipleCompareBuffer(t *testing.T) {
 		t.Error("error: one of buffer type is invalid")
 	}
 }
+
+func TestIsSvg(t *testing.T) {
+	buff, err := os.Open("./tmp/sample-0.svg")
+
+	if err != nil {
+		t.Error("error: SVG file not found")
+	}
+
+	defer func() {
+		buff.Close()
+	}()
+
+	valid := IsSvg(buff)
+	if !valid {
+		t.Error("error: buffer not valid SVG file")
+	}
+}
