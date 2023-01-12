@@ -63,7 +63,7 @@ jobs:
             && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.ico https://filesamples.com/samples/image/ico/sample_640%C3%97426.ico \
             && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.dib https://raw.githubusercontent.com/filestar/File-Type-Sample-Repository/master/dib/sample.dib \
             && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.apk https://raw.githubusercontent.com/appium-boneyard/sample-code/master/sample-code/apps/ContactManager/ContactManager.apk \
-            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.zip https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-zip-file.zip \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.zip https://getsamplefiles.com/download/zip/sample-1.zip \
             && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.rar https://getsamplefiles.com/download/rar/sample.rar \
             && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.tgz https://getsamplefiles.com/download/gzip/sample.tgz \
             && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.tar https://getsamplefiles.com/download/tar/sample.tar \
