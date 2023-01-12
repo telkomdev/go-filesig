@@ -31,43 +31,43 @@ jobs:
       - name: Get sample files
         run: |-
           mkdir tmp \
-            && curl -sLko tmp/sample-0.mp3 https://filesamples.com/samples/audio/mp3/sample3.mp3 \
-            && curl -sLko tmp/sample-0.wav https://freewavesamples.com/files/Ensoniq-ZR-76-01-Dope-77.wav \
-            && curl -sLko tmp/sample-0.ogg https://upload.wikimedia.org/wikipedia/commons/c/c8/Example.ogg \
-            && curl -sLko tmp/sample-0.doc https://filesamples.com/samples/document/doc/sample1.doc \
-            && curl -sLko tmp/sample-0.docx https://filesamples.com/samples/document/docx/sample3.docx \
-            && curl -sLko tmp/sample-0.xls https://filesamples.com/samples/document/xls/sample1.xls \
-            && curl -sLko tmp/sample-0.xlsx https://filesamples.com/samples/document/xlsx/sample1.xlsx \
-            && curl -sLko tmp/sample-0.ppt https://filesamples.com/samples/document/ppt/sample2.ppt \
-            && curl -sLko tmp/sample-0.odt https://filesamples.com/samples/document/odt/sample1.odt \
-            && curl -sLko tmp/sample-0.pdf https://filesamples.com/samples/document/pdf/sample2.pdf \
-            && curl -sLko tmp/sample-0.rtf https://filesamples.com/samples/document/rtf/sample3.rtf \
-            && curl -sLko tmp/sample-0.mpg https://filesamples.com/samples/video/mpg/sample_640x360.mpg \
-            && curl -sLko tmp/sample-0.flv https://filesamples.com/samples/video/flv/sample_640x360.flv \
-            && curl -sLko tmp/sample-0.3gp https://filesamples.com/samples/video/3gp/sample_640x360.3gp \
-            && curl -sLko tmp/sample-0.mkv https://filesamples.com/samples/video/mkv/sample_640x360.mkv \
-            && curl -sLko tmp/sample-0.swf https://filesamples.com/samples/video/swf/sample_640x360.swf \
-            && curl -sLko tmp/sample-0.mp4 https://filesamples.com/samples/video/mp4/sample_640x360.mp4 \
-            && curl -sLko tmp/sample-0.webm https://filesamples.com/samples/video/webm/sample_640x360.webm \
-            && curl -sLko tmp/sample-0.wmv https://filesamples.com/samples/video/wmv/sample_640x360.wmv \
-            && curl -sLko tmp/sample-0.avi https://filesamples.com/samples/video/avi/sample_640x360.avi \
-            && curl -sLko tmp/sample-0.mov https://filesamples.com/samples/video/mov/sample_640x360.mov \
-            && curl -sLko tmp/sample-0.bmp https://filesamples.com/samples/image/bmp/sample_640%C3%97426.bmp \
-            && curl -sLko tmp/sample-0.avif http://sample-file.bazadanni.com/download/images/avif/sample.avif \
-            && curl -sLko tmp/sample-0.webp https://filesamples.com/samples/image/webp/sample1.webp \
-            && curl -sLko tmp/sample-0.png https://filesamples.com/samples/image/png/sample_640%C3%97426.png \
-            && curl -sLko tmp/sample-0.jpg https://filesamples.com/samples/image/jpg/sample_640%C3%97426.jpg \
-            && curl -sLko tmp/sample-0.tiff https://filesamples.com/samples/image/tiff/sample_640%C3%97426.tiff \
-            && curl -sLko tmp/sample-0.gif https://filesamples.com/samples/image/gif/sample_640%C3%97426.gif \
-            && curl -sLko tmp/sample-0.svg https://filesamples.com/samples/image/svg/sample_640%C3%97426.svg \
-            && curl -sLko tmp/sample-0.ico https://filesamples.com/samples/image/ico/sample_640%C3%97426.ico \
-            && curl -sLko tmp/sample-0.dib https://raw.githubusercontent.com/filestar/File-Type-Sample-Repository/master/dib/sample.dib \
-            && curl -sLko tmp/sample-0.apk https://raw.githubusercontent.com/appium-boneyard/sample-code/master/sample-code/apps/ContactManager/ContactManager.apk \
-            && curl -sLko tmp/sample-0.zip https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-zip-file.zip \
-            && curl -sLko tmp/sample-0.rar https://getsamplefiles.com/download/rar/sample.rar \
-            && curl -sLko tmp/sample-0.tgz https://getsamplefiles.com/download/gzip/sample.tgz \
-            && curl -sLko tmp/sample-0.tar https://getsamplefiles.com/download/tar/sample.tar \
-            && curl -sLko tmp/sample-0.jar.zip http://www.java2s.com/Code/JarDownload/sample/sample.jar.zip \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.mp3 https://filesamples.com/samples/audio/mp3/sample3.mp3 \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.wav https://freewavesamples.com/files/Ensoniq-ZR-76-01-Dope-77.wav \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.ogg https://upload.wikimedia.org/wikipedia/commons/c/c8/Example.ogg \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.doc https://filesamples.com/samples/document/doc/sample1.doc \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.docx https://filesamples.com/samples/document/docx/sample3.docx \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.xls https://filesamples.com/samples/document/xls/sample1.xls \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.xlsx https://filesamples.com/samples/document/xlsx/sample1.xlsx \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.ppt https://filesamples.com/samples/document/ppt/sample2.ppt \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.odt https://filesamples.com/samples/document/odt/sample1.odt \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.pdf https://filesamples.com/samples/document/pdf/sample2.pdf \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.rtf https://filesamples.com/samples/document/rtf/sample3.rtf \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.mpg https://filesamples.com/samples/video/mpg/sample_640x360.mpg \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.flv https://filesamples.com/samples/video/flv/sample_640x360.flv \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.3gp https://filesamples.com/samples/video/3gp/sample_640x360.3gp \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.mkv https://filesamples.com/samples/video/mkv/sample_640x360.mkv \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.swf https://filesamples.com/samples/video/swf/sample_640x360.swf \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.mp4 https://filesamples.com/samples/video/mp4/sample_640x360.mp4 \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.webm https://filesamples.com/samples/video/webm/sample_640x360.webm \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.wmv https://filesamples.com/samples/video/wmv/sample_640x360.wmv \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.avi https://filesamples.com/samples/video/avi/sample_640x360.avi \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.mov https://filesamples.com/samples/video/mov/sample_640x360.mov \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.bmp https://filesamples.com/samples/image/bmp/sample_640%C3%97426.bmp \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.avif http://sample-file.bazadanni.com/download/images/avif/sample.avif \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.webp https://filesamples.com/samples/image/webp/sample1.webp \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.png https://filesamples.com/samples/image/png/sample_640%C3%97426.png \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.jpg https://filesamples.com/samples/image/jpg/sample_640%C3%97426.jpg \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.tiff https://filesamples.com/samples/image/tiff/sample_640%C3%97426.tiff \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.gif https://filesamples.com/samples/image/gif/sample_640%C3%97426.gif \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.svg https://filesamples.com/samples/image/svg/sample_640%C3%97426.svg \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.ico https://filesamples.com/samples/image/ico/sample_640%C3%97426.ico \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.dib https://raw.githubusercontent.com/filestar/File-Type-Sample-Repository/master/dib/sample.dib \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.apk https://raw.githubusercontent.com/appium-boneyard/sample-code/master/sample-code/apps/ContactManager/ContactManager.apk \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.zip https://getsamplefiles.com/download/zip/sample-1.zip \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.rar https://getsamplefiles.com/download/rar/sample.rar \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.tgz https://getsamplefiles.com/download/gzip/sample.tgz \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.tar https://getsamplefiles.com/download/tar/sample.tar \
+            && curl -H 'Cache-Control: no-cache' -sLko tmp/sample-0.jar.zip http://www.java2s.com/Code/JarDownload/sample/sample.jar.zip \
             && unzip tmp/sample-0.jar.zip -d tmp \
             && mv tmp/sample.jar tmp/sample-0.jar \
             && rm tmp/sample-0.jar.zip
