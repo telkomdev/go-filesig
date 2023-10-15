@@ -37,4 +37,5 @@ var (
 
 	HtmlCommentRegex = regexp.MustCompile(`(?i)<!--([\s\S]*?)-->`)
 	SvgRegex         = regexp.MustCompile(`(?i)^\s*(?:<\?xml[^>]*>\s*)?(?:<!doctype svg[^>]*>\s*)?<svg[^>]*>[^*]*<\/svg>\s*$`)
+	ScriptRegex      = regexp.MustCompile(`<\s*script`)
 )

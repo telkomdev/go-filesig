@@ -219,6 +219,6 @@ func IsSvg(r io.ReadSeeker) bool {
 		return false
 	}
 	r.Seek(0, io.SeekStart)
-
-	return SvgRegex.Match(HtmlCommentRegex.ReplaceAll(buff, []byte{}))
+	buff = HtmlCommentRegex.ReplaceAll(buff, []byte{})
+	return SvgRegex.Match(buff) && !ScriptRegex.Match(buff)
 }
